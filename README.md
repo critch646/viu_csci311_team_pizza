@@ -9,7 +9,7 @@ Team project for CSCI 311 Web Programming.
 * SQLite 		- Database
 
 ## The Team
-* Carolyn McAughren - Developer 
+* Carolyn McAughren - Developer, Database Designer
 * Iuliiana Unesikhina - Developer
 * Zeke Critchlow - Developer, Repo Master
 * Brandon Stanton - Developer, Graphic Designer
