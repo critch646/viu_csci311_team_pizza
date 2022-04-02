@@ -1,0 +1,46 @@
+class User {
+    #CLASS ATTRIBUTES
+    string username =;
+    string password = "";
+    int XPoints = 0;
+    int level = 1;
+
+    #METHODS
+
+    #constructor/destructor
+    User user(username, password, XPoints, level);
+    ~user();
+
+    #GETTERS/SETTERS
+    int getXPoints();
+    int getLevel();
+    bool setLevel(int currentLvl);
+
+    #FUNCTIONALITY METHODS
+    bool addXPoints(int gained);
+    bool levelUp();
+
+    #DISPLAY METHODS
+    int XPointsToNextLvl();
+
+    #SETTINGS METHODS
+    bool changePassword(string newPassword);
+
+}
+
+class userDB {
+    #DATABASE TABLE MODIFICATION
+
+        bool createNewUser(username, password);
+        bool updateUserXPoints(username, currentXPoints);
+        bool updateUserLvl(username, currentLvl);
+
+    #DATABASE TABLE QUERYING
+
+        #Single User Query
+            int getUserXPoints(username);
+            int getUserLvl(username);
+
+        #Multi-User Query
+            list<username, int> getTopUserXPoints();
+}

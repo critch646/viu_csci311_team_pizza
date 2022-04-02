@@ -1,0 +1,122 @@
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+Notes:
+A. User -> Logging in:
+	1. @User enters "login data" into the @Interface
+	2. @Interface checks whether "login data" is #valid or #invalid
+		2a. #valid data is sent to @Database
+		2b. JUMP TO 3.
+
+		2c. #invalid data triggers "error message"
+		2d. entered data is cleared from the @Interface
+		2e. @Interface prompts @User to try again
+		2f. END OF CASE
+
+	3. @Database checks "login data" against what's in the table, and whether 	it's #valid or #invalid ~GOTO([I.1])
+		3a. #valid returns to the @Interface with a true flag
+		3b. @User is logged in, and will continue to be until they're not
+		3c. END OF CASE
+
+		3c. #invalid returns to the @Interface with a false flag
+		3d. entered data is cleared from the @Interface
+		3e. @Interface prompts @User to try again
+		3f. END OF CASE
+___________________________________________________________________________
+Notes:
+B. User -> Logging out:
+	1. @User opens @Interface, and selects logout button
+	2. @Interface logs user out
+	3. Page refreshes to solidify logout
+	4. User information is cleared from the webpage during the refresh
+	5. END OF CASE
+___________________________________________________________________________
+Notes: 
+-> Do we want to have a loop instead of [1b], i.e. instead of a confirm button-- just apply the settings to the puzzle on game launch? or have a while loop going on-- dynamically altering the puzzle board?
+	-> Do we want to have a way to display the image that the user is 	selecting using HTML instead of the expensive(?) operation of changing 	the game board on each change?
+
+C. User -> Starting the Game:
+	1. @User is either #loggedIn or #!loggedIn; game is either #gameActive, 	or #gameInactive
+		1a. #LoggedIn && #gameInactive @User selects #puzzleSettings[level, 		image] for the current game
+			1-. User selects #level
+			1-. User selects #image
+		1b. @User presses the "confirm button" to apply the #puzzleSettings 		to the gameboard.
+
+	2. #loggedIn && #gameActive: 
+		2a. while(#gameActive):
+				settings are grayed out, and disabled
+		2b. settings are restored, and are enabled
+		2c. JUMP TO 1a.
+
+	3. #!loggedIn && #gameInactive:
+		3a. while(#!loggedIn):
+				if(@Interface is interacted with):
+					prompt user to Login [A.1]
+
+	4. #!loggedIn && #gameActive: CONTRADICTION
+___________________________________________________________________________
+Notes:
+E. User -> Ending the Game:
+	1. @User will either #finishGame or #!finishGame.
+		1. on #finishGame:
+			1a.
+			1-. END OF CASE
+		2. on #!finishGame:
+			2a. voliatile data is dumped, no database change
+			2b. END OF CASE
+___________________________________________________________________________
+Notes:
+F. User -> Checking the Leaderboard:
+	1.First, check if the #leaderboard is not empty
+         2.Then we do the aggregation on Username column to #get the best score of the user (according togreater_is_better parameter)
+ 	3. see #max submission,
+ 	4. see #last entries time.
+	5.show the data frame using #st.write(df_leaderboard)
+
+___________________________________________________________________________
+Notes:
+G. User -> Changing their settings:
+	1.@User will chage settings #changesettings or #!changesettings.
+		1. on #changesettings:
+			1a.
+			1-. END OF CASE
+		2. on #!changesettings:
+			2a. voliatile data is dumped, no database change
+			2b. END OF CASE
+___________________________________________________________________________
+Notes:
+	-> Might need a 'cookie'
+H. User -> Navigating from one Page to another:
+	1.
+
+*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*
+_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_
+Notes:
+I. System -> Accessing Database to check User Credentials:
+	1. @System is passed #userCredentials[username, password] from [A.3]
+		1a. uses #username to query the tables, and will use this reference 		to check the 'passwd' element-- this will either be a #match or #!			match to #password
+		1b. #match, will return a 'True' to [A.3a]
+		1c. END OF CASE
+
+		1d. #!match, will return a 'False' to [A.3c]
+		1e. END OF CASE
+___________________________________________________________________________
+Notes:
+J. System -> Saving User "win" to the Database:
+	1. @System would sent updated data back to a database by calling the #Update method of a 	    #TableAdapter
+		1a. if true @Pass the name of the data table that contains the values to be written to the database
+		1b. if false @Unchanged	The row has not changed since AcceptChanges
+	2. @If an exception is caught, #locate the data row that caused the error.
+	3. @Reconcile the problem in the data row
+	4.@Then try the update again #(HasErrors, GetErrors).
+	
+___________________________________________________________________________
+Notes:
+K. System -> Loading a Webpage:
+	1.@HTML is downloaded
+	2.@HTML is parsed progressively
+	3.@DOM is rendered then 
+	4.@JavaScript execute from the onload event, each requested with a separate HTTP header - quicker
+		
+
+___________________________________________________________________________
+___________________________________________________________________________

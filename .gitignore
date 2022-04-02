@@ -1,0 +1,11 @@
+/tree.txt
+/.idea/
+*.[oa]
+*~
+*.class
+*.ps
+core
+*.core
+a.out
+devNotes.txt
+*.htaccess

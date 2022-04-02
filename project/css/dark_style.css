@@ -1,0 +1,10 @@
+/* CSS file for the "dark mode" for the website */
+
+body {
+	background-color: #2A2C35;
+	color:aliceblue;
+}
+
+.table_pizza {
+	color: aliceblue;
+}
