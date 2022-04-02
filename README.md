@@ -1,8 +1,6 @@
 # CSCI 311 Team Project Overview
 Team project for CSCI 311 Web Programming.
 
-Project Repository:
-[https://github.com/critch646/csci311_project](https://github.com/critch646/csci311_project)
 
 ## Technologies
 * HTML5 / CSS 		- Webpage Structure, and Style
